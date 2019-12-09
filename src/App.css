@@ -2,6 +2,7 @@
   max-width: 1000px;
   margin: auto;
 }
+
 nav {
   padding: 20px 0;
 }
@@ -54,4 +55,10 @@ nav {
 .home-wrapper {
   background: #e8ecef;
   padding: 40px
+}
+
+.courses-wrapper {
+  text-align: left;
+  padding-top: 30px;
+  padding-left: 15px;
 }
