@@ -4,7 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./components/header";
 // import Routes from "./components/routes";

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { addCourse } from './../redux/actions';
 class Courses extends Component {
   constructor(props) {
     super(props);
@@ -18,16 +19,16 @@ class Courses extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let { courses, value } = this.state;
-    courses.push(value);
+    let { value } = this.state;
+    const  { dispatch } = this.props;
+    dispatch(addCourse(value));
     this.setState({
-      courses, 
       value: ''
     })
   }
 
   render() {
-    let { courses } = this.state;
+    let { courses } = this.props;
     return (
       <div className="courses-wrapper">
         <h2>Courses...</h2>
@@ -54,4 +55,9 @@ class Courses extends Component {
   }
 }
 
-export default Courses;
+const mapStateToProps = state => {
+  return {
+    courses: state.courses
+  };
+};
+export default connect(mapStateToProps)(Courses);
