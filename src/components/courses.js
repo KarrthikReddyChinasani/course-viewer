@@ -1,30 +1,48 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCourse } from './../redux/actions';
+import { addCourse, allCourses } from "./../redux/actions";
+import { getCourses } from "./../api/courseApi";
+
 class Courses extends Component {
   constructor(props) {
     super(props);
     this.state = {
       courses: [],
-      value: ''
+      value: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(this.loadCourses());
+  }
+
+  loadCourses = () => {
+    return function(dispatch, getState) {
+      return getCourses()
+        .then(res => {
+          dispatch(allCourses(res));
+        })
+        .catch(err => {
+          console.log("error", err);
+        });
+    };
+  };
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     let { value } = this.state;
-    const  { dispatch } = this.props;
+    const { dispatch } = this.props;
     dispatch(addCourse(value));
     this.setState({
-      value: ''
-    })
+      value: ""
+    });
   }
 
   render() {
@@ -34,7 +52,7 @@ class Courses extends Component {
         <h2>Courses...</h2>
         <ul>
           {courses.map(item => (
-            <li key={item}>{item}</li>
+            <li key={item.id}>{item.title}</li>
           ))}
         </ul>
         <div>

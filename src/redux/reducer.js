@@ -10,6 +10,10 @@ const coursesReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         courses
       });
+    case "ALL_COURSES":
+      return Object.assign({}, state, {
+        courses: action.payload
+      });
     default:
       return state;
   }
