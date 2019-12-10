@@ -66,3 +66,15 @@ nav {
 .courses-table {
   margin-top: 24px;
 }
+
+.navbar-nav>li{
+  border-right: 1px solid #000;
+}
+
+.navbar-nav>li:last-child{
+  border: none;
+}
+
+.nav-sub-menu-item {
+  padding: 0px 8px;
+}

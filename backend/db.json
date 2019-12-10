@@ -57,11 +57,13 @@
       "category": "Software Architecture"
     },
     {
-      "id": 9,
-      "title": "Becoming an Outlier: Reprogramming the Developer Mind",
-      "slug": "career-reboot-for-developer-mind",
+      "title": "Becoming an Outlier: Reprogramming the Developer Minds Tools",
       "authorId": 1,
-      "category": "Career"
+      "category": "Career",
+      "id": 9,
+      "slug": {
+        "slug": "career-reboot-for-developer-mind"
+      }
     }
   ],
   "authors": [

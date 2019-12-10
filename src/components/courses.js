@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCourse, allCourses, fetchAuthors } from "./../redux/actions";
-import { getCourses, deleteCourse } from "./../api/courseApi";
-import { getAuthors } from "./../api/authorApi";
+import { addCourse } from "./../redux/actions";
+import { deleteCourse } from "./../api/courseApi";
 import TableComponent from "./courses/Table";
 import { Link } from "react-router-dom";
 
@@ -20,29 +19,9 @@ class Courses extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(this.loadCourses());
-    dispatch(this.loadAuthors());
+    dispatch({type: 'COURSES_FETCH_REQUESTED'});
+    dispatch({type: 'AUTHOR_FETCH_REQUESTED'});
   }
-
-  loadCourses = () => {
-    return function(dispatch, getState) {
-      return getCourses()
-        .then(res => {
-          dispatch(allCourses(res));
-        })
-        .catch(err => {
-          console.log("error", err);
-        });
-    };
-  };
-
-  loadAuthors = () => {
-    return function(dispatch, getState) {
-      return getAuthors()
-        .then(res => dispatch(fetchAuthors(res)))
-        .catch(err => console.log("error", err));
-    };
-  };
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -61,7 +40,7 @@ class Courses extends Component {
   onCourseDelete(e, id) {
     const { dispatch } = this.props;
     e.preventDefault();
-    deleteCourse(id).then(res => dispatch(this.loadCourses())).catch(err => console.log("err", err));
+    deleteCourse(id).then(res => dispatch({type: 'COURSES_FETCH_REQUESTED'})).catch(err => console.log("err", err));
   }
 
   render() {

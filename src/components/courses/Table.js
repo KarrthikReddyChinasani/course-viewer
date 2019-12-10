@@ -24,6 +24,7 @@ class TableComponent extends Component {
               <th>Title</th>
               <th>Author</th>
               <th>Category</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
