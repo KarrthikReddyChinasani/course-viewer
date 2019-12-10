@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./components/header";
@@ -33,7 +29,10 @@ function App() {
           <Route path={`/home`}>
             <Home />
           </Route>
-          <Route exact path={'/course'}>
+          <Route exact path={"/course"}>
+            <NewCourse />
+          </Route>
+          <Route exact path={"/course/:slug"}>
             <NewCourse />
           </Route>
           <Route component={Notfound} />

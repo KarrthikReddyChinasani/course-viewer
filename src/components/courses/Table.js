@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class TableComponent extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class TableComponent extends Component {
             {courses.map(item => (
               <tr key={item.slug}>
                 <td><button type="button" className="btn btn-light">Watch</button></td>
-                <td>{item.title}</td>
+                <td><Link to={`/course/${item.slug}`}> {item.title} </Link></td>
                 <td>{ this.getAuthor(item.authorId) }</td>
                 <td>{item.category}</td>
               </tr>
