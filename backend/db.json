@@ -62,22 +62,6 @@
       "slug": "career-reboot-for-developer-mind",
       "authorId": 1,
       "category": "Career"
-    },
-    {
-      "id": 10,
-      "title": "Web Component Fundamentals",
-      "slug": "web-components-shadow-dom",
-      "authorId": 1,
-      "category": "HTML5"
-    },
-    {
-      "title": "Awesome course Data Details",
-      "authorId": "2",
-      "category": "awesome",
-      "id": 11,
-      "slug": {
-        "slug": "awesome-course-data"
-      }
     }
   ],
   "authors": [

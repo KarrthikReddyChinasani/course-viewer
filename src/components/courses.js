@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addCourse, allCourses, fetchAuthors } from "./../redux/actions";
-import { getCourses } from "./../api/courseApi";
+import { getCourses, deleteCourse } from "./../api/courseApi";
 import { getAuthors } from "./../api/authorApi";
 import TableComponent from "./courses/Table";
 import { Link } from "react-router-dom";
@@ -15,6 +15,7 @@ class Courses extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onCourseDelete = this.onCourseDelete.bind(this);
   }
 
   componentDidMount() {
@@ -57,13 +58,19 @@ class Courses extends Component {
     });
   }
 
+  onCourseDelete(e, id) {
+    const { dispatch } = this.props;
+    e.preventDefault();
+    deleteCourse(id).then(res => dispatch(this.loadCourses())).catch(err => console.log("err", err));
+  }
+
   render() {
     let { courses, authors } = this.props;
     return (
       <div className="courses-wrapper">
         <h2>Courses...</h2>
         <Link to={'/course'} className="btn btn-primary"> {'Add Course'} </Link>
-        <TableComponent courses={courses} authors={authors} />
+        <TableComponent courses={courses} authors={authors} onDelete={ this.onCourseDelete }/>
       </div>
     );
   }

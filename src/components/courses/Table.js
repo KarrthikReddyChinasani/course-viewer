@@ -14,7 +14,7 @@ class TableComponent extends Component {
   }
 
   render() {
-    const { courses } = this.props;
+    const { courses, onDelete } = this.props;
     return (
       <div className="courses-table">
         <table className="table">
@@ -33,6 +33,7 @@ class TableComponent extends Component {
                 <td><Link to={`/course/${item.slug}`}> {item.title} </Link></td>
                 <td>{ this.getAuthor(item.authorId) }</td>
                 <td>{item.category}</td>
+                <td><button type="button" className="btn btn-outline-danger" onClick={(e) => onDelete(e, item.id)}>Delete</button></td>
               </tr>
             ))}
           </tbody>
