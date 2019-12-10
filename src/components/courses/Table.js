@@ -8,7 +8,7 @@ class TableComponent extends Component {
 
   getAuthor(id) {
     const { authors } = this.props;
-    const index = authors.findIndex(x => x.id === id);
+    const index = authors.findIndex(x => x.id === parseInt(id+""));
     return index >= 0 ? authors[index].name : "";
   }
 
@@ -28,7 +28,7 @@ class TableComponent extends Component {
           <tbody>
             {courses.map(item => (
               <tr key={item.slug}>
-                <td><button type="button" class="btn btn-light">Watch</button></td>
+                <td><button type="button" className="btn btn-light">Watch</button></td>
                 <td>{item.title}</td>
                 <td>{ this.getAuthor(item.authorId) }</td>
                 <td>{item.category}</td>
