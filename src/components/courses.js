@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCourse, allCourses } from "./../redux/actions";
+import { addCourse, allCourses, fetchAuthors } from "./../redux/actions";
 import { getCourses } from "./../api/courseApi";
+import { getAuthors } from "./../api/authorApi";
+import TableComponent from "./courses/Table";
+import { Link } from "react-router-dom";
 
 class Courses extends Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class Courses extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(this.loadCourses());
+    dispatch(this.loadAuthors());
   }
 
   loadCourses = () => {
@@ -28,6 +32,14 @@ class Courses extends Component {
         .catch(err => {
           console.log("error", err);
         });
+    };
+  };
+
+  loadAuthors = () => {
+    return function(dispatch, getState) {
+      return getAuthors()
+        .then(res => dispatch(fetchAuthors(res)))
+        .catch(err => console.log("error", err));
     };
   };
 
@@ -46,28 +58,12 @@ class Courses extends Component {
   }
 
   render() {
-    let { courses } = this.props;
+    let { courses, authors } = this.props;
     return (
       <div className="courses-wrapper">
         <h2>Courses...</h2>
-        <ul>
-          {courses.map(item => (
-            <li key={item.id}>{item.title}</li>
-          ))}
-        </ul>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Course: <br></br>
-              <input
-                type="text"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+        <Link to={'/course'} className="btn btn-primary"> {'Add Course'} </Link>
+        <TableComponent courses={courses} authors={authors} />
       </div>
     );
   }
@@ -75,7 +71,8 @@ class Courses extends Component {
 
 const mapStateToProps = state => {
   return {
-    courses: state.courses
+    courses: state.courses,
+    authors: state.authors
   };
 };
 export default connect(mapStateToProps)(Courses);

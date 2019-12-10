@@ -17,3 +17,8 @@ export const stopLoader = (payload) => ({
     type: "STOP_LOADER",
     payload
 })
+
+export const fetchAuthors = (payload) => ({
+    type: "LOAD_AUTHORS",
+    payload
+})

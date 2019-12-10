@@ -12,6 +12,7 @@ import About from "./components/about";
 import Home from "./components/home";
 import Courses from "./components/courses";
 import Notfound from "./components/not-found";
+import NewCourse from "./components/NewCourse";
 
 function App() {
   return (
@@ -26,11 +27,14 @@ function App() {
           <Route exact path={"/"}>
             <Home />
           </Route>
-          <Route path={`/courses`}>
+          <Route exact path={`/courses`}>
             <Courses />
           </Route>
           <Route path={`/home`}>
             <Home />
+          </Route>
+          <Route exact path={'/course'}>
+            <NewCourse />
           </Route>
           <Route component={Notfound} />
         </Switch>

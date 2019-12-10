@@ -1,5 +1,6 @@
 const initialState = {
-  courses: []
+  courses: [],
+  authors: []
 };
 
 const coursesReducer = (state = initialState, action) => {
@@ -13,6 +14,10 @@ const coursesReducer = (state = initialState, action) => {
     case "ALL_COURSES":
       return Object.assign({}, state, {
         courses: action.payload
+      });
+    case "LOAD_AUTHORS":
+      return Object.assign({}, state, {
+        authors: action.payload
       });
     default:
       return state;
