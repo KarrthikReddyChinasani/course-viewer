@@ -6,8 +6,7 @@ const initialState = {
 const coursesReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_COURSE":
-      let { courses } = state;
-      courses.push(action.payload);
+      let courses = [...state.courses, action.payload];
       return Object.assign({}, state, {
         courses
       });

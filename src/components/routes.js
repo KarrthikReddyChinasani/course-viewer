@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./home";
-import Courses from "./courses";
-import About from "./about";
+import Home from "./Home";
+import Courses from "./Courses";
+import About from "./About";
 
 const comps = {
   Home: Home,

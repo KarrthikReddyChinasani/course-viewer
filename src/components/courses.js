@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCourse, allCourses, fetchAuthors } from "./../redux/actions";
-import { getCourses, deleteCourse } from "./../api/courseApi";
-import { getAuthors } from "./../api/authorApi";
+import { addCourse, fetchCourses, fetchAuthorNames } from "../redux/actions";
+import {  deleteCourse } from "../api/courseApi";
 import TableComponent from "./courses/Table";
 import { Link } from "react-router-dom";
 
 class Courses extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      courses: [],
-      value: ""
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onCourseDelete = this.onCourseDelete.bind(this);
@@ -25,23 +20,11 @@ class Courses extends Component {
   }
 
   loadCourses = () => {
-    return function(dispatch, getState) {
-      return getCourses()
-        .then(res => {
-          dispatch(allCourses(res));
-        })
-        .catch(err => {
-          console.log("error", err);
-        });
-    };
+    return fetchCourses();
   };
 
   loadAuthors = () => {
-    return function(dispatch, getState) {
-      return getAuthors()
-        .then(res => dispatch(fetchAuthors(res)))
-        .catch(err => console.log("error", err));
-    };
+    return fetchAuthorNames()
   };
 
   handleChange(event) {

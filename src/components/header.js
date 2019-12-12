@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function Header({ selected }) {
+function Header({ selected }) {
   const options = ["Home", "Courses", "About"].map((item, index) => (
     <li className="nav-item"  key={`key-${index}`}>
       <NavLink
@@ -23,3 +23,5 @@ export default function Header({ selected }) {
     </nav>
   );
 }
+
+export default Header;
